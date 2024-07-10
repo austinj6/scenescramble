@@ -254,6 +254,17 @@ header {
   margin-bottom: 20px;
 }
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .difficulty-button {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -269,6 +280,24 @@ header {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.difficulty-button:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.difficulty-button:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.difficulty-button:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.difficulty-button:nth-child(4) {
+  animation-delay: 0.8s;
 }
 
 .difficulty-button::before {
