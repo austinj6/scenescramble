@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="robots" content="noindex, nofollow">
+   <meta name="googlebot" content="noindex, nofollow">
+   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+   <meta http-equiv="Pragma" content="no-cache">
+   <meta http-equiv="Expires" content="Sat, 20 Apr 2024 01:00:00 GMT">
+   <title>UPtv Scene Scramble: TV Show Photo Puzzle Game</title>
+   <meta name="description" content="Unscramble scenes from your favorite UPtv shows in this daily puzzle game. Engage with UPtv's programming in a fun and interactive way!">
+   <meta name="keywords" content="tv show photo puzzle, UPtv, scene scramble, daily puzzle, tv show game, interactive game">
+   <meta name="author" content="UPtv">
+   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+   <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+   <div id="app-container">
+      <div id="title-screen">
+         <img src="assets/uptv_scene_scramble_logo.png" alt="UPtv Scene Scramble Logo" class="logo">
+         <div class="tagline">Unscramble scenes from your<br>favorite UPtv shows!</div>
+         <div class="difficulty-container">
+            <div class="difficulty-wrapper">
+               <button class="difficulty-button" data-difficulty="easy">Easy</button>
+               <button class="difficulty-button" data-difficulty="medium">Medium</button>
+               <button class="difficulty-button" data-difficulty="hard">Hard</button>
+               <button class="difficulty-button" data-difficulty="extreme">Extreme</button>
+            </div>
+            <button id="start-button" disabled>Start</button>
+         </div>
+         <a href="https://www.uptv.com/" target="_blank" rel="noopener noreferrer">
+         </a>
+      </div>
+      <div id="puzzle-screen">
+         <header>
+            <div id="timer-moves-container">
+               <div id="timer" class="timer"></div>
+               <div id="moves" class="moves"></div>
+            </div>
+            <div class="logo-container">
+               <img src="assets/uptv_scene_scramble_logo.png" alt="UPtv Scene Scramble Logo" class="puzzle-logo">
+            </div>
+         </header>
+         <div id="puzzle-description-container">
+            <h2 class="puzzle-description">Unscramble this Heartland scene:</h2>
+            <button id="you-did-it-button">Woohoo!</button>
+         </div>
+         <div id="puzzle-wrapper">
+            <div id="puzzle-container"></div>
+            <div id="timer-toggle-container">
+               <label for="timer-toggle" class="ui-text">Stats:</label>
+               <input type="checkbox" id="timer-toggle">
+            </div>
+         </div>
+         <div id="original-image"></div>
+         <button id="share-button">Share Your Stats</button>
+      </div>
+   </div>
+   <footer class="static-footer">
+     <div class="copyright-text">© 2024 UPtv. All rights reserved.</div>
+   </footer>
+   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+   <script src="main.js?v=3"></script>
+   <script src="ui.js?v=3"></script>
+   <script src="puzzle.js?v=3"></script>
+</body>
+</html>
