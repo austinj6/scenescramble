@@ -1,0 +1,545 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+:root {
+  --uptv-primary: #000000;
+  --uptv-secondary: #00A8E0;
+  --uptv-accent: #FF6B00;
+  --uptv-light: #F2F2F2;
+  --uptv-dark: #333333;
+}
+
+body {
+  background-color: var(--uptv-primary);
+  color: var(--uptv-light);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#app-container {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  height: 100vh;
+}
+
+#title-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#title-screen .logo {
+  max-width: 95%;
+  height: auto;
+  margin-top: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 0px;
+  height: 1px;
+  margin: 0px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  white-space: nowrap;
+}
+
+.org-logo {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#puzzle-screen {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#puzzle-screen .org-logo,
+#puzzle-info {
+  display: none;
+}
+
+.tagline,
+.puzzle-description,
+.ui-text {
+  color: var(--uptv-light);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.tagline {
+  margin-top: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.puzzle-logo {
+  max-width: 250px;
+  max-height: 100px;
+}
+
+#puzzle-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  margin-top: 25px;
+}
+
+#puzzle-container-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+#puzzle-container {
+  display: grid;
+  grid-gap: 0.1px;
+  transition: opacity 0.3s ease-out;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1/1;
+  margin-top: -25px;
+  margin-bottom: 25px;
+}
+
+#puzzle-container.medium {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#puzzle-container.hard {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+#puzzle-container.extreme {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.puzzle-piece {
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--uptv-secondary);
+  cursor: pointer;
+  aspect-ratio: 1/1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.puzzle-piece:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+#original-image {
+  display: none;
+  text-align: center;
+}
+
+#original-image.show {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+#original-image img {
+  max-width: 32vw;
+  max-height: 32vw;
+  object-fit: contain;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 480px) {
+  #original-image img {
+    max-width: 85vw;
+    max-height: 85vw;
+  }
+}
+
+#you-did-it-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  margin-bottom: 15px;
+  background-color: var(--uptv-accent);
+  color: var(--uptv-light);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: none;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#you-did-it-button.pulse {
+  animation: pulse 1s infinite;
+}
+
+#you-did-it-button:hover {
+  background-color: var(--uptv-secondary);
+  color: var(--uptv-light);
+  transform: scale(1.05);
+}
+
+#you-did-it-button:active {
+  transform: scale(0.95);
+}
+
+#start-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  margin-bottom: 15px;
+  background-color: var(--uptv-accent);
+  color: var(--uptv-light);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#start-button.pulse {
+  animation: pulse 1s infinite;
+}
+
+#start-button:hover {
+  background-color: var(--uptv-secondary);
+  color: var(--uptv-light);
+  transform: scale(1.05);
+}
+
+#start-button:disabled {
+  opacity: 0;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#start-button.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#share-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  margin-bottom: 15px;
+  background-color: var(--uptv-secondary);
+  color: var(--uptv-light);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: none;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#share-button.pulse {
+  animation: pulse 1s infinite;
+}
+
+#share-button:hover {
+  background-color: var(--uptv-accent);
+  color: var(--uptv-light);
+  transform: scale(1.05);
+}
+
+#share-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--uptv-accent);
+}
+
+.difficulty-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.difficulty-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.difficulty-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px 10px;
+  background-color: var(--uptv-primary);
+  color: var(--uptv-light);
+  border: 2px solid var(--uptv-secondary);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 180px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-button::before {
+  content: attr(data-emoji);
+  font-size: 1.5em;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.difficulty-button[data-difficulty="easy"]::before {
+  content: "🍿";
+}
+
+.difficulty-button[data-difficulty="medium"]::before {
+  content: "🎬";
+}
+
+.difficulty-button[data-difficulty="hard"]::before {
+  content: "🎥";
+}
+
+.difficulty-button[data-difficulty="extreme"]::before {
+  content: "🎦";
+}
+
+.difficulty-button:hover {
+  background-color: var(--uptv-secondary);
+  color: var(--uptv-light);
+  transform: scale(1.05);
+}
+
+.difficulty-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--uptv-secondary);
+}
+
+.difficulty-button.active {
+  background-color: var(--uptv-accent);
+  color: var(--uptv-light);
+  transform: scale(1.1);
+}
+
+#start-button-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  overflow: visible;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.puzzle-info,
+.timer,
+.moves {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--uptv-light);
+  text-align: center;
+}
+
+.puzzle-info {
+  margin-bottom: 20px;
+}
+
+.timer,
+.moves {
+  padding: 3px 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#timer-moves-container {
+  position: fixed;
+  top: 5px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#puzzle-description-container {
+  position: relative;
+  z-index: 1;
+}
+
+#timer-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+#timer-toggle {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: var(--uptv-primary);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#timer-toggle:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--uptv-light);
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+#timer-toggle:checked {
+  background-color: var(--uptv-secondary);
+}
+
+#timer-toggle:checked:before {
+  transform: translateX(20px);
+}
+
+.static-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: var(--uptv-light);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--uptv-primary);
+  z-index: 2;
+  margin-bottom:10px;
+}
+
+.footer-logo {
+  width: 225px;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  #puzzle-wrapper {
+    height: calc(100vh - 350px);
+    transform: scale(1);
+  }
+
+  #puzzle-container {
+    max-width: calc(100vh - 370px);
+    max-height: calc(100vh - 370px);
+  }
+
+  #title-screen {
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+
+  #title-screen .logo {
+    max-width: 35%;
+    margin-top: 0;
+  }
+
+  #puzzle-screen {
+    padding-top: 20px;
+  }
+
+  .logo-container {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .puzzle-logo {
+    max-width: 300px;
+    max-height: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #puzzle-wrapper {
+    transform: scale(0.9);
+  }
+}
