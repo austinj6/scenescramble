@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
 :root {
-  --uptv-primary: #000000;
+  --uptv-primary: #232cc9;
   --uptv-secondary: #00A8E0;
   --uptv-accent: #FF6B00;
   --uptv-light: #F2F2F2;
@@ -46,7 +46,7 @@ body {
 #title-screen .logo {
   max-width: 95%;
   height: auto;
-  margin-top: 0;
+  margin-top: 25px;
 }
 
 .visually-hidden {
@@ -117,6 +117,7 @@ header {
 .puzzle-logo {
   max-width: 250px;
   max-height: 100px;
+  margin-top:25px;
 }
 
 #puzzle-wrapper {
@@ -471,7 +472,7 @@ header {
 
   #title-screen .logo {
     max-width: 35%;
-    margin-top: 0;
+    margin-top: 25px;
   }
 
   #puzzle-screen {
